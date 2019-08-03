@@ -1,37 +1,50 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import data from './data/Agencies.csv'
 import { csv } from 'd3'
 
-class App extends Component {
-  componentDidMount() {
+export default function App() {
+  const [searchZip, setSearchZip] = useState('')
+  const [currentAgency, setCurrentAgency] = useState({})
+  const [agencyList, setAgencyList] = useState([])
+
+  useEffect(() => {
     csv(`${data}`).then(data => {
       console.log(data)
+      setAgencyList(data)
     })
+  }, [])
+
+  const search = e => {
+    e.preventDefault()
   }
-  render() {
-    return (
-      <div className="flex-box">
-        <div className="left-cell">
-          <div className="flexed-header">
-            <span>Input</span>
-            <span>Agency Finder</span>
-          </div>
-          <div className="search-area">
-            <label>Enter Zip Code</label>
-            <input className="input" type="search box" />
-          </div>
-          <br />
-          <button className="button">Search</button>
+
+  return (
+    <div className="flex-box">
+      <form className="left-cell" onSubmit={search}>
+        <div className="flexed-header">
+          <span>Input</span>
+          <span>Agency Finder</span>
         </div>
-        <div>
-          <hr width="1" size="350" />
+        <div className="search-area">
+          <label>Enter Zip Code</label>
+          <input
+            className="input"
+            type="search"
+            value={searchZip}
+            onChange={e => setSearchZip(e.target.value)}
+          />
         </div>
-        <div className="right-cell">
-          <div>Return</div>
-          <div className="description">
-            The agency for zipcode 78532 Santa Cruz is
-          </div>
-          <tbody className="table">
+        <br />
+        <button className="button">Search</button>
+      </form>
+      <div>
+        <hr width="1" size="350" />
+      </div>
+      <div className="right-cell">
+        <div>Return</div>
+        <div className="description">The agency for zip_code city_name is</div>
+        <table className="table">
+          <tbody>
             <tr>
               <td>Type</td>
               <td>Agency</td>
@@ -39,24 +52,22 @@ class App extends Component {
             </tr>
             <tr>
               <td>Police</td>
-              <td>Agency Name</td>
-              <td>Their Number</td>
+              <td>agency_name</td>
+              <td>phone1</td>
             </tr>
             <tr>
               <td>Fire</td>
-              <td>Agency Name</td>
-              <td>Their number</td>
+              <td>agency_name</td>
+              <td>phone1</td>
             </tr>
             <tr>
               <td>Medical</td>
-              <td>Agency Name</td>
-              <td>Their number</td>
+              <td>agency_name</td>
+              <td>phone1</td>
             </tr>
           </tbody>
-        </div>
+        </table>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-export default App
