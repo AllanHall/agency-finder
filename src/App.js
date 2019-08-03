@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import data from './data/Agencies.csv'
+import { csv } from 'd3'
 
 class App extends Component {
+  componentDidMount() {
+    csv(`${data}`).then(data => {
+      console.log(data)
+    })
+  }
   render() {
     return (
       <div className="flex-box">
@@ -24,7 +31,7 @@ class App extends Component {
           <div className="description">
             The agency for zipcode 78532 Santa Cruz is
           </div>
-          <table className="table">
+          <tbody className="table">
             <tr>
               <td>Type</td>
               <td>Agency</td>
@@ -45,7 +52,7 @@ class App extends Component {
               <td>Agency Name</td>
               <td>Their number</td>
             </tr>
-          </table>
+          </tbody>
         </div>
       </div>
     )
