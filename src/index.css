@@ -1,5 +1,6 @@
 :root {
-  font: 16px / 1 sans-serif;
+  font: 16px / 1 serif;
+  font-family: 'Merriweather', sans-serif;
 }
 
 html {
@@ -9,4 +10,57 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+}
+
+.flex-box {
+  display: flex;
+  margin-top: 20vh;
+  justify-content: space-between;
+  margin-left: 24vw;
+  margin-right: 24vw;
+}
+
+.flexed-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-area {
+  margin-top: 10vh;
+}
+
+.input {
+  margin-left: 1vw;
+  text-align: center;
+  padding: 0.2rem;
+  width: 6vw;
+  font-size: 14px;
+  outline: none;
+}
+
+.button {
+  margin-top: 3vh;
+  margin-left: 8vw;
+  font-size: 18px;
+  background: rgb(27, 102, 241);
+  color: white;
+  padding: 0.4rem;
+}
+
+.description {
+  margin-top: 18vh;
+}
+
+.table {
+  margin-top: 2vh;
+}
+
+td {
+  padding: 0.3rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+}
+
+hr {
+  margin-top: 0;
 }
