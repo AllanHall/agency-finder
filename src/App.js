@@ -3,24 +3,26 @@ import data from './data/Agencies.csv'
 import { csv } from 'd3'
 
 export default function App() {
-  const [searchZip, setSearchZip] = useState('')
-  const [currentAgency, setCurrentAgency] = useState({})
+  const [searchTerm, setSearchTerm] = useState('')
+  const [currentAgencies, setCurrentAgencies] = useState([])
   const [agencyList, setAgencyList] = useState([])
 
   useEffect(() => {
     csv(`${data}`).then(data => {
-      console.log(data)
       setAgencyList(data)
     })
   }, [])
 
   const search = e => {
-    e.preventDefault()
+    setCurrentAgencies(
+      agencyList.filter(agency => agency.zip_code === searchTerm)
+    )
+    console.log(currentAgencies)
   }
 
   return (
     <div className="flex-box">
-      <form className="left-cell" onSubmit={search}>
+      <div className="left-cell">
         <div className="flexed-header">
           <span>Input</span>
           <span>Agency Finder</span>
@@ -29,14 +31,16 @@ export default function App() {
           <label>Enter Zip Code</label>
           <input
             className="input"
-            type="search"
-            value={searchZip}
-            onChange={e => setSearchZip(e.target.value)}
+            type="text"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
           />
         </div>
         <br />
-        <button className="button">Search</button>
-      </form>
+        <button className="button" onClick={search}>
+          Search
+        </button>
+      </div>
       <div>
         <hr width="1" size="350" />
       </div>
@@ -52,8 +56,8 @@ export default function App() {
             </tr>
             <tr>
               <td>Police</td>
-              <td>agency_name</td>
-              <td>phone1</td>
+              <td>lol</td>
+              <td>lol</td>
             </tr>
             <tr>
               <td>Fire</td>
