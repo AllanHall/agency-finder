@@ -10,10 +10,21 @@ export default function App() {
   useEffect(() => {
     csv(`${data}`).then(data => {
       setAgencyList(data)
+      console.log(agencyList)
     })
   }, [])
 
-  const search = e => {
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const result = await csv(`${data}`)
+  //     setAgencyList(result)
+  //   }
+  //   getData()
+  //   console.log(agencyList)
+  // }, [])
+
+  const search = () => {
+    console.log(agencyList)
     setCurrentAgencies(
       agencyList.filter(agency => agency.zip_code === searchTerm)
     )
