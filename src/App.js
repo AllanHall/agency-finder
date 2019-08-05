@@ -52,7 +52,10 @@ export default function App() {
         <div className="right-cell">
           <div>Return</div>
           <div className="description">
-            The agency for zip_code city_name is
+            The agency for zipcode{' '}
+            {currentAgencies[0] && <span>{currentAgencies[0].zip_code}</span>}{' '}
+            {currentAgencies[0] && <span>{currentAgencies[0].city_name}</span>}{' '}
+            is
           </div>
           <table className="table">
             <tbody>
