@@ -8,10 +8,12 @@ export default function App() {
   const [agencyList, setAgencyList] = useState([])
 
   useEffect(() => {
-    csv(`${data}`).then(data => {
-      setAgencyList(data)
+    const fetchData = async () => {
+      const result = await csv(`${data}`)
+      setAgencyList(result)
       console.log(agencyList)
-    })
+    }
+    fetchData()
   }, [])
 
   const search = () => {
@@ -61,18 +63,42 @@ export default function App() {
               </tr>
               <tr>
                 <td>Police</td>
-                <td>lol</td>
-                <td>lol</td>
+                <td>
+                  {currentAgencies[0] && (
+                    <span>{currentAgencies[0].agency_name}</span>
+                  )}
+                </td>
+                <td>
+                  {currentAgencies[0] && (
+                    <span>{currentAgencies[0].phone1}</span>
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>Fire</td>
-                <td>agency_name</td>
-                <td>phone1</td>
+                <td>
+                  {currentAgencies[1] && (
+                    <span>{currentAgencies[1].agency_name}</span>
+                  )}
+                </td>
+                <td>
+                  {currentAgencies[1] && (
+                    <span>{currentAgencies[1].phone1}</span>
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>Medical</td>
-                <td>agency_name</td>
-                <td>phone1</td>
+                <td>
+                  {currentAgencies[2] && (
+                    <span>{currentAgencies[2].agency_name}</span>
+                  )}
+                </td>
+                <td>
+                  {currentAgencies[2] && (
+                    <span>{currentAgencies[2].phone1}</span>
+                  )}
+                </td>
               </tr>
             </tbody>
           </table>
